@@ -32,3 +32,10 @@ img {
     float: left;
     margin-right: 1em;
 }
+
+button {
+    padding: 2em;
+    background-color: white;
+    border: 0;
+    font-size: 18px;
+}

@@ -1,18 +1,14 @@
 var birdbathControllers = angular.module('birdbathControllers', []);
 
-birdbathControllers.controller('TweetCtrl', function($http) {
+birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
     var ctrl = this;
     this.tweets = [];
     this.deletedCount = 0;
     this.index = 0;
     this.user = '';
+    this.isLoggedIn = false;
 
-    // Initial first load
-    $http.get('example.json').success(function(data) {
-        ctrl.tweets = data;
-        ctrl.user = ctrl.tweets[0].user;
-        ctrl.nextTweet();
-    });
+    twitterService.initialize();
 
     this.delete = function() {
         console.log('fakedelete');
@@ -21,17 +17,8 @@ birdbathControllers.controller('TweetCtrl', function($http) {
     };
 
     this.keep = function() {
-        console.log('lolkeep');
+        console.log('fakekeep');
         this.nextTweet();
-    };
-
-    this.nextTweet = function() {
-        this.index += 1;
-        if (this.index >= this.tweets.length)
-            return;
-
-        this.tweet = this.tweets[this.index];
-        this.author = this.tweet.retweeted ? this.tweet.retweeted_status.user : this.tweet.user;
     };
 
     this.keyPress = function(e) {
@@ -42,8 +29,41 @@ birdbathControllers.controller('TweetCtrl', function($http) {
         }
     };
 
-    this.softDeleteTweet = function(tweet) {
-        tweet.isActive = false;
-        this.deleted.push(tweet);
+    this.nextTweet = function() {
+        if (this.index + 1 >= this.tweets.length) {
+            this.refreshTimeline(this.tweet.id);
+            return;
+        }
+        this.index += 1;
+        this.tweet = this.tweets[this.index];
+        this.author = this.tweet.retweeted ? this.tweet.retweeted_status.user : this.tweet.user;
+        this.user = this.tweets[0].user;
     };
+
+    //using the OAuth authorization result get the latest 20 tweets from twitter for the user
+    this.refreshTimeline = function(maxId) {
+        twitterService.getLatestTweets(maxId).then(function(data) {
+            ctrl.tweets = ctrl.tweets.concat(data);
+            ctrl.nextTweet();
+        },function(){
+            ctrl.rateLimitError = true;
+        });
+    };
+
+    //when the user clicks the connect twitter button, the popup authorization window opens
+    this.connectButton = function() {
+        twitterService.connectTwitter().then(function() {
+            if (twitterService.isReady()) {
+                ctrl.refreshTimeline();
+                ctrl.isLoggedIn = true;
+            }
+        });
+    };
+
+    //if the user is a returning user display the tweets
+    if (twitterService.isReady()) {
+        this.isLoggedIn = true;
+        this.refreshTimeline();
+    }
 });
+
