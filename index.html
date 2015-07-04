@@ -11,32 +11,32 @@
 </head>
 <body ng-app="birdbathApp">
     <div class="container" ng-controller="TweetCtrl as vm">
-        <h1>Birdbath</h1>
-        <h2>Clean your twitter history</h2>
-        <p>Logged in as <strong>@{{ vm.tweets[0].user.screen_name }}</strong></p>
+        <h1>Birdbath: Clean your twitter history</h1>
+        <p>
+            Displaying tweet #{{ vm.index }}/{{ vm.user.statuses_count }}.
+            Deleted {{ vm.deletedCount }} tweets!
+        </p>
         <div class="tweetRow"
-             ng-repeat="tweet in vm.tweets"
-             ng-init="author = tweet.retweeted ? tweet.retweeted_status.user : tweet.user"
+             ng-show="vm.index < vm.tweets.length"
              ng-keyup="vm.keyPress($event)"
              tabindex="0">
-
             <div id="deleteButton" ng-click="vm.delete()">
                 <h3>D</h3>
                 <p>Delete</p>
             </div>
             <div class="tweet">
-                <img ng-src="{{author.profile_image_url}}" class="img-circle">
+                <img ng-src="{{vm.author.profile_image_url}}" class="img-circle">
                 <div class="authorContainer">
-                    <p>{{author.name}}  <small>@{{author.screen_name}}</small></p>
+                    <p>{{vm.author.name}}  <small>@{{vm.author.screen_name}}</small></p>
                 </div>
-                {{ tweet.text }}
+                {{ vm.tweet.text }}
             </div>
             <div id="keepButton" ng-click="vm.keep()">
                 <h3>K</h3>
                 <p>Keep</p>
             </div>
         </div>
-
+        <p ng-show="vm.index >= vm.tweets.length">You've gone through your whole history!</p>
     </div>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
