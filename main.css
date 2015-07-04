@@ -10,6 +10,7 @@ html {
 }
 
 .tweetRow {
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
 }
@@ -17,13 +18,16 @@ html {
 .tweet {
     background-color: white;
     font-size: 18px;
+    -webkit-flex: 3;
     flex: 3;
     margin: 1em 0;
     padding: 1em;
 }
 
 #keepButton, #deleteButton {
+    -webkit-flex: 1;
     flex: 1;
+    -webkit-align-self: center;
     align-self: center;
     text-align: center;
 }
