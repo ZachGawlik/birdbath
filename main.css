@@ -9,22 +9,22 @@ html {
     margin: 0 auto;
 }
 
-.tweetRow>div {
-    display: inline-block;
-    vertical-align: middle;
-    box-sizing: border-box;
+.tweetRow {
+    display: flex;
+    flex-direction: row;
 }
 
 .tweet {
     background-color: white;
-    padding: 1em;
     font-size: 18px;
+    flex: 3;
     margin: 1em 0;
-    width: 55%;
+    padding: 1em;
 }
 
 #keepButton, #deleteButton {
-    width: 20%;
+    flex: 1;
+    align-self: center;
     text-align: center;
 }
 
