@@ -15,16 +15,16 @@
     <div class="container" ng-controller="TweetCtrl as vm">
         <h1>Birdbath: Clean your twitter history</h1>
         <p ng-hide="vm.isLoggedIn"><button ng-click="vm.connectButton()" id="connectButton">Log In to Twitter</button></p>
-        <p ng-show="vm.isLoggedIn">
-            Displaying tweet #{{ vm.index }}/{{ vm.user.statuses_count }}.
-            Deleted {{ vm.deletedCount }} tweets!
+        <p id="progress" ng-show="vm.isLoggedIn">
+            Displaying tweet #{{ vm.index }}/{{ vm.user.statuses_count }}
+            <span id="deletedCount">Deleted {{ vm.deletedCount }} tweets</span>
         </p>
         <div class="tweetRow"
              ng-show="vm.index < vm.tweets.length"
              ng-keyup="vm.keyPress($event)"
              tabindex="0">
-            <div id="deleteButton" ng-click="vm.delete()">
-                <h3>D</h3>
+            <div class="tweetAction" id="deleteButton" ng-click="vm.delete()">
+                <p class="key" id="deleteKey">D</p>
                 <p>Delete</p>
             </div>
             <div class="tweet">
@@ -34,8 +34,8 @@
                 </div>
                 {{ vm.tweet.text }}
             </div>
-            <div id="keepButton" ng-click="vm.keep()">
-                <h3>K</h3>
+            <div class="tweetAction" id="keepButton" ng-click="vm.keep()">
+                <p class="key" id="keepKey">K</p>
                 <p>Keep</p>
             </div>
         </div>

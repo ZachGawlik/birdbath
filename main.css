@@ -9,6 +9,15 @@ html {
     margin: 0 auto;
 }
 
+#progress {
+    width: 60%;
+    margin: auto;
+}
+
+#deletedCount {
+    float: right;
+}
+
 .tweetRow {
     display: -webkit-flex;
     display: flex;
@@ -17,19 +26,37 @@ html {
 
 .tweet {
     background-color: white;
-    font-size: 18px;
+    font-size: 1.3em;
     -webkit-flex: 3;
     flex: 3;
-    margin: 1em 0;
+    margin-top: 1em;
     padding: 1em;
 }
 
-#keepButton, #deleteButton {
+.tweetAction {
     -webkit-flex: 1;
     flex: 1;
     -webkit-align-self: center;
     align-self: center;
+    justify-content: center;
     text-align: center;
+}
+
+.tweetAction:hover {
+    background-color: rgba(255, 255, 255, .5);
+}
+
+#deleteKey {
+    color: #B89898;
+}
+
+#keepKey {
+    color: #1F8A70;
+}
+
+.key {
+    font-size: 2.5em;
+    font-weight: 300;
 }
 
 img {
