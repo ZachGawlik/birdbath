@@ -14,7 +14,7 @@
 <body ng-app="birdbathApp">
     <div class="container" ng-controller="TweetCtrl as vm">
         <h1>Birdbath: Clean your twitter history</h1>
-        <p ng-hide="vm.isLoggedIn"><button ng-click="vm.connectButton()" id="connectButton">Log In to Twitter</button></p>
+        <!--<p ng-hide="vm.isLoggedIn"><button ng-click="vm.connectButton()" id="connectButton">Log In to Twitter</button></p>-->
         <p id="progress" ng-show="vm.isLoggedIn">
             Displaying tweet #{{ vm.index }}/{{ vm.user.statuses_count }}
             <span id="deletedCount">Deleted {{ vm.deletedCount }} tweets</span>

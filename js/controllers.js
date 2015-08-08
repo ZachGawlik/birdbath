@@ -42,7 +42,8 @@ birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
 
     //using the OAuth authorization result get the latest 20 tweets from twitter for the user
     this.refreshTimeline = function(maxId) {
-        twitterService.getLatestTweets(maxId).then(function(data) {
+        $http.get('example-response.json').success(function(data) {
+        //twitterService.getLatestTweets(maxId).then(function(data) {
             ctrl.tweets = ctrl.tweets.concat(data);
             ctrl.nextTweet();
         },function(){
@@ -50,20 +51,22 @@ birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
         });
     };
 
+    this.refreshTimeline();
+
     //when the user clicks the connect twitter button, the popup authorization window opens
     this.connectButton = function() {
-        twitterService.connectTwitter().then(function() {
-            if (twitterService.isReady()) {
-                ctrl.refreshTimeline();
-                ctrl.isLoggedIn = true;
-            }
-        });
+        //twitterService.connectTwitter().then(function() {
+        //    if (twitterService.isReady()) {
+        //        ctrl.refreshTimeline();
+        //        ctrl.isLoggedIn = true;
+        //    }
+        //});
     };
 
     //if the user is a returning user display the tweets
-    if (twitterService.isReady()) {
-        this.isLoggedIn = true;
-        this.refreshTimeline();
-    }
+    //if (twitterService.isReady()) {
+    //    this.isLoggedIn = true;
+    //    this.refreshTimeline();
+    //}
 });
 
