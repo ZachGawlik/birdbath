@@ -9,6 +9,7 @@
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-route.js"></script>
     <script src="js/lib/angular-sanitize.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="//platform.twitter.com/widgets.js"></script>
 </head>
 <body ng-app="birdbathApp">
@@ -27,7 +28,7 @@
                 <p class="key" id="deleteKey">D</p>
                 <p>Delete</p>
             </div>
-            <div class="tweet">
+            <div class="tweet" ng-class="{isDeleting: vm.isDeleting}">
                 <img ng-src="{{vm.author.profile_image_url}}" class="img-circle">
                 <div class="authorContainer">
                     <p>{{vm.author.name}}  <small>@{{vm.author.screen_name}}</small></p>

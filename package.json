@@ -1,0 +1,26 @@
+{
+  "name": "birdbath",
+  "version": "0.1.0",
+  "description": "Easily clean your twitter history",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZachGawlik/birdbath.git"
+  },
+  "author": "Zach Gawlik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZachGawlik/birdbath/issues"
+  },
+  "homepage": "https://github.com/ZachGawlik/birdbath",
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "^1.4.3",
+    "angular-animate": "^1.4.3",
+    "angular-route": "^1.4.3",
+    "oauth-js": "oauth-io/oauth-js"
+  }
+}

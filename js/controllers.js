@@ -1,4 +1,4 @@
-var birdbathControllers = angular.module('birdbathControllers', []);
+var birdbathControllers = angular.module('birdbathControllers', ['ngAnimate']);
 
 birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
     var ctrl = this;
@@ -7,13 +7,16 @@ birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
     this.index = 0;
     this.user = '';
     this.isLoggedIn = false;
+    this.isKeeping = false;
+    this.isDeleting = false;
 
     twitterService.initialize();
 
     this.delete = function() {
         console.log('fakedelete');
+        ctrl.isDeleting = true;
         this.deletedCount += 1;
-        this.nextTweet();
+        //this.nextTweet();
     };
 
     this.keep = function() {
@@ -38,6 +41,8 @@ birdbathControllers.controller('TweetCtrl', function($http, twitterService) {
         this.tweet = this.tweets[this.index];
         this.author = this.tweet.retweeted ? this.tweet.retweeted_status.user : this.tweet.user;
         this.user = this.tweets[0].user;
+        this.isKeeping = false;
+        this.isDeleting = false;
     };
 
     //using the OAuth authorization result get the latest 20 tweets from twitter for the user
