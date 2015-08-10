@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birdbath</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//platform.twitter.com/widgets.js"></script>
+</head>
+<body ng-app="birdbathApp">
+    <div class="container" ng-controller="TweetCtrl as vm">
+        <h1>Birdbath: Clean your twitter history</h1>
+        <!--<p ng-hide="vm.isLoggedIn"><button ng-click="vm.connectButton()" id="connectButton">Log In to Twitter</button></p>-->
+        <p id="progress" ng-show="vm.isLoggedIn">
+            Displaying tweet #{{ vm.index }}/{{ vm.user.statuses_count }}
+            <span id="deletedCount">Deleted {{ vm.deletedCount }} tweets</span>
+        </p>
+        <div class="tweetRow"
+             ng-show="vm.index < vm.tweets.length"
+             ng-keyup="vm.keyPress($event)"
+             tabindex="0">
+            <div class="tweetAction" id="deleteButton" ng-click="vm.delete()">
+                <p class="key" id="deleteKey">D</p>
+                <p>Delete</p>
+            </div>
+            <div class="tweet" ng-class="{isDeleting: vm.isDeleting}">
+                <img ng-src="{{vm.author.profile_image_url}}" class="img-circle">
+                <div class="authorContainer">
+                    <p>{{vm.author.name}}  <small>@{{vm.author.screen_name}}</small></p>
+                </div>
+                {{ vm.tweet.text }}
+            </div>
+            <div class="tweetAction" id="keepButton" ng-click="vm.keep()">
+                <p class="key" id="keepKey">K</p>
+                <p>Keep</p>
+            </div>
+        </div>
+        <p ng-show="vm.isLoggedIn && vm.index >= vm.tweets.length">You've gone through your whole history!</p>
+    </div>
+    <script src="all.js"></script>
+</body>
+</html>
