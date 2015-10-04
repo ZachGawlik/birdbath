@@ -5,11 +5,9 @@
     <title>Birdbath</title>
     <link rel="stylesheet" href="main.css">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/lib/oauth.js"></script>
-    <script src="js/lib/angular.js"></script>
-    <script src="js/lib/angular-route.js"></script>
-    <script src="js/lib/angular-sanitize.js"></script>
-    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="scripts/angular/angular.js"></script>
+    <script src="scripts/angular-route/angular-route.js"></script>
+    <script src="scripts/angular-animate/angular-animate.js"></script>
     <script src="//platform.twitter.com/widgets.js"></script>
 </head>
 <body ng-app="birdbathApp">
@@ -28,14 +26,16 @@
                 <p class="key" id="deleteKey">D</p>
                 <p>Delete</p>
             </div>
-            <div class="tweet" ng-class="{isDeleting: vm.isDeleting}">
+            <div class="tweet"
+                 ng-class="{isDeleting: vm.isDeleting}">
                 <img ng-src="{{vm.author.profile_image_url}}" class="img-circle">
                 <div class="authorContainer">
                     <p>{{vm.author.name}}  <small>@{{vm.author.screen_name}}</small></p>
                 </div>
                 {{ vm.tweet.text }}
             </div>
-            <div class="tweetAction" id="keepButton" ng-click="vm.keep()">
+            <div class="tweetAction"
+                 id="keepButton" ng-click="vm.keep()">
                 <p class="key" id="keepKey">K</p>
                 <p>Keep</p>
             </div>

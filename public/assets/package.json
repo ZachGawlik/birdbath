@@ -21,6 +21,11 @@
     "angular": "^1.4.3",
     "angular-animate": "^1.4.3",
     "angular-route": "^1.4.3",
-    "oauth-js": "oauth-io/oauth-js"
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.0",
+    "passport-twitter": "^1.0.3",
+    "twit": "^2.1.0"
   }
 }

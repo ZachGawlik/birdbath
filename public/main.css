@@ -33,29 +33,24 @@ html {
     padding: 1em;
 }
 
-
-.tweet {
-    -webkit-transition: all 0.5s linear
-    -moz-transition: all 0.5s linear
-    -o-transition: all 0.5s linear
-    transition: all 0.5s linear
-}
-
 .isDeleting,
 .isDeleting-add.isDeleting-add-active {
     transform: translateX(-30%);
     opacity: 0;
-    transition: all 0.5s linear
 
 }
 
-.isDeleting-remove.isDeleting-remove-active {
+.isKeeping,
+.isKeeping-add.isKeeping-add-active {
+    transform: translateX(30%);
+    opacity: 0;
+}
+
+.tweet {
     opacity: 1;
-    transition: all 0.5s linear
-
+    -webkit-transition: all 1.0s ease-out;
+    transition: all 1.0s ease-out;
 }
-
-
 
 .tweetAction {
     -webkit-flex: 1;

@@ -1,2 +1,5 @@
 /.idea
+node_modules/
 *.iml
+config/
+public/example-response.json
